@@ -34,6 +34,19 @@ module.exports = function(app, express){
             res.json(users)
         });
     });
+
+    api.post('/signup', function(req, res){
+
+        User.findOne({
+            username: req.body.username
+        }, function(err, user){
+             if(err){
+                res.send(err);
+                return;
+            }
+            res.json(user)
+        });
+        });
     
 
     return api;
