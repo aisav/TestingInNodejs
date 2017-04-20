@@ -21,6 +21,10 @@ app.use(bodyParser.json());
 //log any request in the console
 app.use(morgan('dev'));
 
+var api = require('./app/routes/api')(app, express);
+//prefix URL
+app.use('/api',api);
+
 app.get('*', function(req, res){
     res.sendFile(__dirname + '/public/views/index.html');
 });
