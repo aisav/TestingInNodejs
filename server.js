@@ -21,12 +21,15 @@ app.use(bodyParser.json());
 //log any request in the console
 app.use(morgan('dev'));
 
+// all files render under public dir
+app.use(express.static(__dirname + '/public'));
+
 var api = require('./app/routes/api')(app, express);
 //prefix URL
 app.use('/api',api);
 
 app.get('*', function(req, res){
-    res.sendFile(__dirname + '/public/views/index.html');
+    res.sendFile(__dirname + '/public/app/views/index.html');
 });
 
 app.listen(config.port, function(err){
